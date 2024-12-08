@@ -13,6 +13,10 @@ public class Employee {
     @Column(name = "id")
     private long id;
 
+    @Column(name = "identify")
+    private long identify;
+
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -28,6 +32,11 @@ public class Employee {
     @Column(name = "birthplace")
     private int birthplace;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+
     public Employee() {
     }
 
@@ -37,6 +46,14 @@ public class Employee {
         this.gender = gender;
         this.birthday = birthday;
         this.birthplace = birthplace;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public long getId() {
