@@ -1,6 +1,8 @@
 package com.betus.dbdemo.model;
 
+import com.betus.dbdemo.validation.TCIdentityNumber;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -13,9 +15,10 @@ public class Employee {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "identify")
-    private long identify;
-
+    @TCIdentityNumber
+    @NotNull
+    @Column(unique = true, name = "identify")
+    private String identify;
 
     @Column(name = "first_name")
     private String firstName;
@@ -40,6 +43,10 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(String identify) {
+        this.identify = identify;
+    }
+
     public Employee(String firstName, String lastName, boolean gender, Date birthday, int birthplace) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,6 +61,14 @@ public class Employee {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getIdentify() {
+        return identify;
+    }
+
+    public void setIdentify(String identify) {
+        this.identify = identify;
     }
 
     public long getId() {
@@ -109,6 +124,7 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
+                ", identify=" + identify +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", gender=" + gender +

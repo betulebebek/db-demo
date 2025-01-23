@@ -11,10 +11,13 @@ public class DbDemoApplication {
         SpringApplication.run(DbDemoApplication.class, args);
     }
 
+/*
     @Bean
     public CommandLineRunner commandLineRunner(EmployeeRepository employeeRepository) {
         return runner -> {
 
         };
     }
+*/
 }
+

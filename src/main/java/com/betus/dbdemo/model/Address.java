@@ -1,6 +1,7 @@
 package com.betus.dbdemo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +24,7 @@ public class Address {
     private String city;
 
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private Employee employee;
 
     public Address() {
